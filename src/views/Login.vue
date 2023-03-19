@@ -70,7 +70,7 @@
                   </el-form>
                 </el-tab-pane>
                 <!-- 二维码 -->
-                <el-tab-pane label="二维码" name="second">二维码</el-tab-pane>
+                <el-tab-pane label="二维码" name="second" ><span @click="ewmLogin"> 二维码</span></el-tab-pane>
               </el-tabs>
             </div>
             <!-- 右边 -->
@@ -105,6 +105,8 @@ export default {
         resource: "",
         type:''
       },
+      cookie:'',
+
       rules: {
         useName: [
           {
@@ -127,13 +129,27 @@ export default {
     login(){
       this.$refs.userForm.validate((v)=>{
         console.log(v)
-        if(v){
-          this.$axios.get('/login/qr/key').then((res)=>{
+        if(v){ 
+          this.$axios.get('/register/anonimous').then((res)=>{
               console.log(res)
+              console.log(res.data)
+              this.cookie = res.data.cookie
+              localStorage.setItem('token',res.data.cookie)
+              this.$router.push("/");
+              
+              this.$axios.get('/login/qr/key').then((res)=>{
+        console.log(res,'21212112121')
+      })
           })
         }
       })
+    },
+    ewmLogin(){
+      
     }
+  },
+  mounted(){
+    
   }
 };
 </script>

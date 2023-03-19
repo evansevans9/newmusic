@@ -1,14 +1,17 @@
 
-
 <template>
-<div>
-    底部
+<div class="footer">
+    
 </div>
 </template>
 <script>
 
 </script>
 
-<style scoped>
-
+<style scoped lang="less">
+.footer{
+    width: 100vw;
+    height: 244px;
+    background-color: #1DB1F2 ;
+}
 </style>
