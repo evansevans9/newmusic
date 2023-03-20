@@ -21,7 +21,7 @@
                   >
                     <div class="left1">
                       <div>账号密码登录</div>
-                    
+
                         <el-form-item label="" prop="useName">
                           <el-input
                           type="text"
@@ -29,7 +29,7 @@
                             placeholder="请输入账号"
                           ></el-input>
                         </el-form-item>
-                    
+
                         <el-form-item label="" prop="usePwd">
                           <el-input
                           type="password"
@@ -37,7 +37,7 @@
                             placeholder="请输入密码"
                           ></el-input>
                         </el-form-item>
-                     
+
                         <el-form-item label="" prop="yanzhengma">
                           <el-input
                           type="text"
@@ -46,15 +46,15 @@
                             class="el-input1"
                           ></el-input>
                         </el-form-item>
-                      
-                  
+
+
                         <el-form-item label="" prop="resource">
                           <el-radio-group v-model="user.resource">
                             <el-radio label="记住密码"></el-radio>
                             <el-radio label="记住账号"></el-radio>
                           </el-radio-group>
                         </el-form-item>
-                   
+
                       <el-form-item prop="type">
                         <el-checkbox-group v-model="user.type">
                           <el-checkbox
@@ -64,7 +64,7 @@
                           </el-checkbox>
                         </el-checkbox-group>
                       </el-form-item>
-                   
+
                         <el-button type="primary" class="btn-login" @click="login">登录</el-button>
                     </div>
                   </el-form>
@@ -129,14 +129,23 @@ export default {
     login(){
       this.$refs.userForm.validate((v)=>{
         console.log(v)
-        if(v){ 
-          this.$axios.get('/register/anonimous').then((res)=>{
+        if(v){
+          this.$axios.get('/register/anonimous', {
+            // get请求添加cookie参数
+            params: {
+              cookie: localStorage.getItem('token')
+            }
+            // post请求添加cookie参数
+            // data: {
+            //   cookie: localStorage.getItem('token')
+            // }
+          }).then((res)=>{
               console.log(res)
               console.log(res.data)
               this.cookie = res.data.cookie
               localStorage.setItem('token',res.data.cookie)
               this.$router.push("/");
-              
+
               this.$axios.get('/login/qr/key').then((res)=>{
         console.log(res,'21212112121')
       })
@@ -145,11 +154,11 @@ export default {
       })
     },
     ewmLogin(){
-      
+
     }
   },
   mounted(){
-    
+
   }
 };
 </script>
