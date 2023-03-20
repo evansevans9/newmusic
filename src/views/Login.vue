@@ -14,63 +14,60 @@
               >
                 <!-- 登录 -->
                 <el-tab-pane label="登录" name="first">
-                  <el-form
-                    ref="userForm"
-                    :model="user"
-                    :rules="rules"
-                  >
+                  <el-form ref="userForm" :model="user" :rules="rules">
                     <div class="left1">
                       <div>账号密码登录</div>
-                    
-                        <el-form-item label="" prop="useName">
-                          <el-input
+
+                      <el-form-item label="" prop="useName">
+                        <el-input
                           type="text"
-                            v-model="user.useName"
-                            placeholder="请输入账号"
-                          ></el-input>
-                        </el-form-item>
-                    
-                        <el-form-item label="" prop="usePwd">
-                          <el-input
+                          v-model="user.useName"
+                          placeholder="请输入账号"
+                        ></el-input>
+                      </el-form-item>
+
+                      <el-form-item label="" prop="usePwd">
+                        <el-input
                           type="password"
-                            v-model="user.usePwd"
-                            placeholder="请输入密码"
-                          ></el-input>
-                        </el-form-item>
-                     
-                        <el-form-item label="" prop="yanzhengma">
-                          <el-input
+                          v-model="user.usePwd"
+                          placeholder="请输入密码"
+                        ></el-input>
+                      </el-form-item>
+
+                      <el-form-item label="" prop="yanzhengma">
+                        <el-input
                           type="text"
-                            v-model="user.yanzhengma"
-                            placeholder="请输入验证码"
-                            class="el-input1"
-                          ></el-input>
-                        </el-form-item>
-                      
-                  
-                        <el-form-item label="" prop="resource">
-                          <el-radio-group v-model="user.resource">
-                            <el-radio label="记住密码"></el-radio>
-                            <el-radio label="记住账号"></el-radio>
-                          </el-radio-group>
-                        </el-form-item>
-                   
+                          v-model="user.yanzhengma"
+                          placeholder="请输入验证码"
+                          class="el-input1"
+                        ></el-input>
+                      </el-form-item>
+
+                      <el-form-item label="" prop="resource">
+                        <el-radio-group v-model="user.resource">
+                          <el-radio label="记住密码"></el-radio>
+                          <el-radio label="记住账号"></el-radio>
+                        </el-radio-group>
+                      </el-form-item>
+
                       <el-form-item prop="type">
                         <el-checkbox-group v-model="user.type">
-                          <el-checkbox
-                            label=""
-                            name="type"
-                          ><span class="ab">同意<a>xxxx隐私政策</a></span>
+                          <el-checkbox label="" name="type"
+                            ><span class="ab">同意<a>xxxx隐私政策</a></span>
                           </el-checkbox>
                         </el-checkbox-group>
                       </el-form-item>
-                   
-                        <el-button type="primary" class="btn-login" @click="login">登录</el-button>
+
+                      <el-button type="primary" class="btn-login" @click="login"
+                        >登录</el-button
+                      >
                     </div>
                   </el-form>
                 </el-tab-pane>
                 <!-- 二维码 -->
-                <el-tab-pane label="二维码" name="second" ><span @click="ewmLogin"> 二维码</span></el-tab-pane>
+                <el-tab-pane label="二维码" name="second"
+                  ><span @click="ewmLogin"> 二维码</span></el-tab-pane
+                >
               </el-tabs>
             </div>
             <!-- 右边 -->
@@ -103,54 +100,55 @@ export default {
         usePwd: "",
         yanzhengma: "",
         resource: "",
-        type:''
+        type: ""
       },
-      cookie:'',
+      cookie: "",
 
       rules: {
         useName: [
           {
             required: true,
             message: "请输入用户名",
-            trigger: "blur",
-          },
+            trigger: "blur"
+          }
         ],
         usePwd: [
           {
             required: true,
             message: "请输入密码",
-            trigger: "blur",
-          },
-        ],
-      },
+            trigger: "blur"
+          }
+        ]
+      }
     };
   },
-  methods:{
-    login(){
-      this.$refs.userForm.validate((v)=>{
-        console.log(v)
-        if(v){ 
-          this.$axios.get('/register/anonimous').then((res)=>{
-              console.log(res)
-              console.log(res.data)
-              this.cookie = res.data.cookie
-              localStorage.setItem('token',res.data.cookie)
-              this.$router.push("/");
-              
-              this.$axios.get('/login/qr/key').then((res)=>{
-        console.log(res,'21212112121')
-      })
-          })
+  methods: {
+    login() {
+      this.$refs.userForm.validate(v => {
+        console.log(v);
+        if (v) {
+          this.$axios.get("/register/anonimous").then(res => {
+            console.log(res);
+            console.log(res.data);
+            this.cookie = res.data.cookie;
+            localStorage.setItem("token", res.data.cookie);
+            this.$router.push("/");
+
+            this.$axios.get("/login/qr/key").then(res => {
+              const { data } = res.data;
+              console.log(data, "21212112121");
+              const {unikey} =  data.unikey
+              this.$axios.get('/login/qr/create',key={unikey}).then((res)=>{
+                console.log(res,'wwwwwwwwwwwwwwwwwwwwwwwwww')
+              })
+            });
+          });
         }
-      })
+      });
     },
-    ewmLogin(){
-      
-    }
+    ewmLogin() {}
   },
-  mounted(){
-    
-  }
+  mounted() {}
 };
 </script>
 <style lang="less" scoped>
@@ -207,12 +205,12 @@ export default {
         /deep/ .el-input1 {
           width: 200px;
         }
-        .ab{
+        .ab {
           width: 60px;
           height: 30px;
           color: black;
         }
-        .btn-login{
+        .btn-login {
           margin-top: -30px;
           margin-left: 80px;
         }

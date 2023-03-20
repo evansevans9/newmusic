@@ -1,14 +1,11 @@
 <script>
 export default {
-  name: "wangye2"
+  name: "shouji1"
 };
 </script>
 
 <template>
   <div class="page1">
-    <div class="page1-top">
-      
-    </div>
     <div class="page2">
       <div class="page3">
         <div><img src="../../assets/img/shouji1.png" class="page3-img" alt=""></div>
@@ -24,7 +21,17 @@ export default {
           </div>
         </div>
       </div>
-
+      <div class="page3"></div>
+      <div class="page3"></div>
+      <div class="page3"></div>
+      <div class="page3"></div>
+      <div class="page3"></div>
+      <div class="page3"></div>
+      <div class="page3"></div>
+      <div class="page3"></div>
+      <div class="page3"></div>
+      <div class="page3"></div>
+      <div class="page3"></div>
     </div>
   </div>
 </template>
@@ -33,11 +40,6 @@ export default {
   height: 1516px;
   background-color: #cdcdcd;
   width: 100vw;
-  .page1-top{
-    width: 100vw;
-    height: 400px;
-    background-color: #fff;
-  }
   .page2 {
     display: flex;
     flex-wrap: wrap;

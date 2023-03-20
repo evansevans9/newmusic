@@ -18,17 +18,17 @@ export default {
         <div class="children">
           <div class="children1">
             <router-link to="/paging" class="router-test">
-              分类
+              分类111
             </router-link>
           </div>
           <div class="children1">
             <router-link to="/paging" class="router-test">
-              分类
+              分类111
             </router-link>
           </div>
           <div class="children1">
             <router-link to="/paging" class="router-test">
-              分类
+              分类111
             </router-link>
           </div>
         </div>
@@ -154,18 +154,28 @@ export default {
         <span>商城</span>
         <div class="children">
           <div class="children1">
-            <router-link to="/paging" class="router-test">
-              华语音乐
+            <router-link to="/zhoubian" class="router-test">
+              周边商城
             </router-link>
           </div>
           <div class="children1">
-            <router-link to="/paging" class="router-test">
-              欧美音乐
+            <router-link to="/shouji" class="router-test">
+             手机配件
             </router-link>
           </div>
           <div class="children1">
-            <router-link to="/paging" class="router-test">
-              日韩音乐
+            <router-link to="/shouji1" class="router-test">
+              手机配件1
+            </router-link>
+          </div>
+          <div class="children1">
+            <router-link to="/shuzi" class="router-test">
+              数字专辑
+            </router-link>
+          </div>
+          <div class="children1">
+            <router-link to="/yinyue" class="router-test">
+              音乐会门票
             </router-link>
           </div>
         </div>

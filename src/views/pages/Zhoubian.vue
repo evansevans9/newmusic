@@ -1,22 +1,21 @@
 <script>
 export default {
-  name: "wangye2"
+  name: "zhoubian"
 };
 </script>
 
 <template>
   <div class="page1">
-    <div class="page1-top">
-      
-    </div>
     <div class="page2">
       <div class="page3">
-        <div><img src="../../assets/img/shouji1.png" class="page3-img" alt=""></div>
+        <div><img src="../../assets/img/shoujipeijian.png" class="page3-img" alt=""></div>
         <div>
           <ul>
-            <li><span>奇联 Q4</span></li>
-            <li>手机耳机 头戴式电脑耳麦有线带话筒游 戏音乐通用</li>
-            
+            <li><span>[全款预定xxx优惠]</span></li>
+            <li>东方神起</li>
+            <li>xxxxxxxxxxxxxxxxxxxxxx</li>
+            <li>价格<span>46</span></li>
+            <li>积分<span>2000</span></li>
           </ul>
           <div class="btn0">
             <el-button type="small">兑换</el-button>
@@ -24,7 +23,17 @@ export default {
           </div>
         </div>
       </div>
-
+      <div class="page3"></div>
+      <div class="page3"></div>
+      <div class="page3"></div>
+      <div class="page3"></div>
+      <div class="page3"></div>
+      <div class="page3"></div>
+      <div class="page3"></div>
+      <div class="page3"></div>
+      <div class="page3"></div>
+      <div class="page3"></div>
+      <div class="page3"></div>
     </div>
   </div>
 </template>
@@ -33,11 +42,6 @@ export default {
   height: 1516px;
   background-color: #cdcdcd;
   width: 100vw;
-  .page1-top{
-    width: 100vw;
-    height: 400px;
-    background-color: #fff;
-  }
   .page2 {
     display: flex;
     flex-wrap: wrap;
@@ -75,7 +79,7 @@ export default {
       }
       .btn0{
         margin-left: 120px;
-        // margin-top: ;
+        margin-top: -20px;
       }
     }
   }

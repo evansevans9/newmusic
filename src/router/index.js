@@ -7,6 +7,8 @@ import Paging from '../views/pages/Paging.vue'
 import Shouji from '../views/pages/Shouji.vue'
 import Shuzi from '../views/pages/Shuzi.vue'
 import Wangye2 from '../views/pages/Wangye2.vue'
+import zhoubian from '../views/pages/Zhoubian.vue'
+import mengyou from '../views/pages/Mengyou.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -59,7 +61,30 @@ export default new Router({
           title: '网页第二页面'
       },
       component: Wangye2
-  },
+  }, {
+    name: 'zhoubian',
+    path: '/zhoubian',
+    meta: {
+        title: '周边商城'
+    },
+    component: zhoubian
+},
+{
+    name: 'mengyou',
+    path: '/mengyou',
+    meta: {
+        title: '梦游记'
+    },
+    component: mengyou
+},
+{
+    name: 'shouji1',
+    path: '/shouji1',
+    meta: {
+        title: '手机配件1'
+    },
+    component: () => import('../views/pages/Shouji1.vue')
+},
       ]
   },
   {
@@ -78,14 +103,14 @@ export default new Router({
 //   },
 //   component: () => import('@/views/Rego.vue')
 // },
-// {
-//     name: '404',
-//     path: '/404',
-//     meta: {
-//         title: '页面不存在'
-//     },
-//     component: () => import('@/views/404.vue')
-// }
+{
+    name: '404',
+    path: '/404',
+    meta: {
+        title: '页面不存在'
+    },
+    component: () => import('../views/404.vue')
+}
     
   ]
 })
