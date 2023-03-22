@@ -1,34 +1,19 @@
 <script>
+
 export default {
-  name: "wangye2"
+  name: "wangye2",
 };
 </script>
 
 <template>
   <div class="page1">
     <div class="page1-top">
-      
-    </div>
-    <div class="page2">
-      <div class="page3">
-        <div><img src="../../assets/img/shouji1.png" class="page3-img" alt=""></div>
-        <div>
-          <ul>
-            <li><span>奇联 Q4</span></li>
-            <li>手机耳机 头戴式电脑耳麦有线带话筒游 戏音乐通用</li>
-            
-          </ul>
-          <div class="btn0">
-            <el-button type="small">兑换</el-button>
-            <el-button type="small">购买</el-button>
-          </div>
-        </div>
-      </div>
 
     </div>
   </div>
 </template>
 <style lang="less" scoped>
+
 .page1 {
   height: 1516px;
   background-color: #cdcdcd;

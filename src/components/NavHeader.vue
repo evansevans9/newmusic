@@ -3,9 +3,21 @@ export default {
   name: "nav-header",
   data() {
     return {
-      input: ""
+      input: "",
+      name:''
     };
-  }
+  },
+  mounted(){
+    if(localStorage.getItem('token')){
+        this.name = '游客'
+        console.log(this.name)
+    }
+  },
+  methods: {
+    goto(){
+        this.$router.params
+    }
+  },
 };
 </script>
 
@@ -178,6 +190,11 @@ export default {
               音乐会门票
             </router-link>
           </div>
+          <div class="children1">
+            <router-link to="/wangye2" class="router-test">
+              网页2
+            </router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -189,7 +206,9 @@ export default {
       ></el-input>
     </div>
     <div class="con-a">
-      <a href="#/login">登录</a>/
+      <a href="#" v-if="this.name" @click="goto(99)">{{ this.name }}</a>
+      <a href="#/login" v-if="!this.name">登录</a>
+      <span>/</span>
       <a href="#/rego">注册</a>
     </div>
   </div>

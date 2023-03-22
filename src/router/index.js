@@ -31,6 +31,13 @@ export default new Router({
               component: Welcome
           },
           {
+            name:'detailed',
+            path:'/detailed/:id',
+            meta:{
+                title:'音乐详情页面'
+            }
+          },
+          {
             name: 'paging',
             path: '/paging',
             meta: {
