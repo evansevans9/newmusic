@@ -44,11 +44,13 @@ export default {
         // '网络热歌榜',6723173524,
         // '俄语榜',6732051320,
         // '越南语榜',6732014811
-     
+
       SubsongList: [],
       icom1: true,
       songlist1: [],
-      songlist2: []
+      songlist2: [],
+      // 所有歌曲
+      songList: []
     };
   },
   mounted() {
@@ -65,23 +67,41 @@ export default {
     //     // console.log(this.SubsongList ,'fff')
     //   }).then(
     //   );
-
-    this.$axios
-      .get("/playlist/track/all", {
-        params: { id: 19723756, limit: 4, offset: 0 }
+    this.list1.forEach(list=> {
+      this.$axios.get('playlist/track/all', {
+        params: { id: list.id, limit: 4, offset: 0 }
+      }).then(res => {
+        this.songList.push({
+          name: list.names,
+          list: res.data.songs.map(song=> {
+            return {
+              id: song.id,
+              name: song.name + (song.tns ? song.tns[0] : ''),
+              singer: song.ar[0].name
+            }
+          })
+        })
+        // this.songlist1 = res.data.privileges;
+        // this.songlist2 = res.data.songs;
+        // console.log(this.songlist2,'0000000')
       })
-      .then(res => {
-        console.log(res, "3333333");
-        this.songlist1 = res.data.privileges;
-        this.songlist2 = res.data.songs;
-        console.log(this.songlist2,'0000000')
-      });
+    })
+    // this.$axios
+    //   .get("/playlist/track/all", {
+    //     params: { id: 19723756, limit: 4, offset: 0 }
+    //   })
+    //   .then(res => {
+    //     console.log(res, "3333333");
+    //     this.songlist1 = res.data.privileges;
+    //     this.songlist2 = res.data.songs;
+    //     console.log(this.songlist2,'0000000')
+    //   });
   },
   methods: {
     huanIcon(event) {
       this.icom1 = !this.icom1;
       console.log(e,'haha')
-    },  
+    },
     moreSonge(){
 
     }
@@ -92,51 +112,58 @@ export default {
 <template>
   <div class="page1">
     <div class="page2">
-      <div class="page3" v-for="(item, index) in list1" :key="index">
-        <div>
-          <img src="../../assets/img/page1.png" class="page3-img" alt="" />
-        </div>
-        <div class="page3-text">
-          <span>{{ item.names }}</span>
-        </div>
-        <div class="page4">
-          <ul >
-            <li v-for="(item1,index1) in songlist2" :key='index1'>
-              {{ index1+1 }} <span>{{ item1.name }}</span> <span>张国荣</span>
-              <i
-              @click="huanIcon(e)"
-                :class="icom1 ? 'el-icon-caret-right' : 'el-icon-video-pause'"
-              ></i>
-              <i class="el-icon-plus"></i>
-            </li>
-            <!-- <li>
-              2 <span>某某歌曲</span> <span>张国荣</span>
-              <i
-                @click="huanIcon"
-                :class="icom1 ? 'el-icon-caret-right' : 'el-icon-delete'"
-              ></i>
-              <i class="el-icon-plus"></i>
-            </li>
-            <li>
-              3 <span>某某歌曲</span> <span>张国荣</span>
-              <i
-                @click="huanIcon"
-                :class="icom1 ? 'el-icon-caret-right' : 'el-icon-delete'"
-              ></i>
-              <i class="el-icon-plus"></i>
-            </li>
-            <li>
-              4 <span>某某歌曲</span> <span>张国荣</span>
-              <i
-                @click="huanIcon"
-                :class="icom1 ? 'el-icon-caret-right' : 'el-icon-delete'"
-              ></i>
-              <i class="el-icon-plus"></i>
-            </li> -->
-            <span class="page4-more" @click="moreSonge">更多</span>
-          </ul>
+      <div v-for="songs in songList">
+        <div>{{ songs.name }}</div>
+        <div v-for="song in songs.list">
+          <span>{{ song.name }}</span>
+          <span>{{ song.singer }}</span>
         </div>
       </div>
+<!--      <div class="page3" v-for="(item, index) in list1" :key="index">-->
+<!--        <div>-->
+<!--          <img src="../../assets/img/page1.png" class="page3-img" alt="" />-->
+<!--        </div>-->
+<!--        <div class="page3-text">-->
+<!--          <span>{{ item.names }}</span>-->
+<!--        </div>-->
+<!--        <div class="page4">-->
+<!--          <ul >-->
+<!--            <li v-for="(item,index) in songList" :key='index'>-->
+<!--              <span>{{ item.name }}</span> <span>{{ item.singer }}</span>-->
+<!--              <i-->
+<!--              @click="huanIcon(item.id)"-->
+<!--                :class="icom1 ? 'el-icon-caret-right' : 'el-icon-video-pause'"-->
+<!--              ></i>-->
+<!--              <i class="el-icon-plus"></i>-->
+<!--            </li>-->
+<!--            &lt;!&ndash; <li>-->
+<!--              2 <span>某某歌曲</span> <span>张国荣</span>-->
+<!--              <i-->
+<!--                @click="huanIcon"-->
+<!--                :class="icom1 ? 'el-icon-caret-right' : 'el-icon-delete'"-->
+<!--              ></i>-->
+<!--              <i class="el-icon-plus"></i>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              3 <span>某某歌曲</span> <span>张国荣</span>-->
+<!--              <i-->
+<!--                @click="huanIcon"-->
+<!--                :class="icom1 ? 'el-icon-caret-right' : 'el-icon-delete'"-->
+<!--              ></i>-->
+<!--              <i class="el-icon-plus"></i>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              4 <span>某某歌曲</span> <span>张国荣</span>-->
+<!--              <i-->
+<!--                @click="huanIcon"-->
+<!--                :class="icom1 ? 'el-icon-caret-right' : 'el-icon-delete'"-->
+<!--              ></i>-->
+<!--              <i class="el-icon-plus"></i>-->
+<!--            </li> &ndash;&gt;-->
+<!--            <span class="page4-more" @click="moreSonge">更多</span>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--      </div>-->
     </div>
   </div>
 </template>
