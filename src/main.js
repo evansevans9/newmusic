@@ -16,7 +16,6 @@ Vue.config.productionTip = false;
 
 const service = axios.create({
   baseURL: "https://netease-cloud-music-api-nine-pearl-57.vercel.app/",
-  timeout: 2000
 });
 // axios.defaults.baseURL= "https://netease-cloud-music-api-nine-pearl-57.vercel.app/";
 // axios.defaults.timeout = 8000;
