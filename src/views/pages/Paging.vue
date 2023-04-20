@@ -57,19 +57,7 @@ export default {
 };
 </script>
 
-<template>
-  <div class="page1">
-    <div class="page2">
-      <div v-for="songs in songList">
-        <div>{{ songs.name }}</div>
-        <div v-for="song in songs.list">
-          <span>{{ song.name }}</span>
-          <span>{{ song.singer }}</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
+<template></template>
 <style lang="less" scoped>
 .page1 {
   height: 1516px;
